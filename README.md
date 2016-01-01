@@ -1,7 +1,7 @@
 # Steps to reproduce:
 
 ```
-git clone git@github.com:abevoelker/searchkick-suggest-bug-repro.git
+git clone https://github.com/abevoelker/searchkick-suggest-bug-repro.git
 cd searchkick-suggest-bug-repro
 docker build . -t foo
 docker run -p 9200:9200 --rm foo
