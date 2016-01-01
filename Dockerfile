@@ -21,8 +21,6 @@ RUN wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key
 RUN DEBIAN_FRONTEND=noninteractive apt-get update &&\
   apt-get install -y oracle-java8-installer elasticsearch
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl lsof
-
 # Clean up APT and temporary files when done
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
