@@ -1,15 +1,17 @@
 # Steps to reproduce:
 
-* `git clone git@github.com:abevoelker/searchkick-suggest-bug-repro.git`
-* `cd searchkick-suggest-bug-repro`
-* `docker build . -t foo`
-* `docker run -p 9200:9200 --rm foo`
-* `bundle`
-* `bundle exec rake db:create db:migrate`
-* `bundle exec rake searchkick:reindex CLASS=Product`
-* `bundle exec rails runner "Product.search '*', suggest: true"`
+```
+git clone git@github.com:abevoelker/searchkick-suggest-bug-repro.git
+cd searchkick-suggest-bug-repro
+docker build . -t foo
+docker run -p 9200:9200 --rm foo
+bundle
+bundle exec rake db:create db:migrate
+bundle exec rake searchkick:reindex CLASS=Product
+bundle exec rails runner "Product.search '*', suggest: true"
+```
 
-# You should output similar to this from the last step:
+# You should see output similar to this from the last step:
 
 ```
 /home/abe/.gem/ruby/2.2.3/gems/searchkick-1.1.2/lib/searchkick/query.rb:76:in `rescue in execute': [400] {"error":{"root_cause":[{"type":"illegal_argument_exception","reason":"No mapping found for field [title.suggest]"}],"type":"search_phase_execution_exception","reason":"all shards failed","phase":"query","grouped":true,"failed_shards":[{"shard":0,"index":"products_development_20160101002945815","node":"x_Ols4UiRyuexXv997svuQ","reason":{"type":"illegal_argument_exception","reason":"No mapping found for field [title.suggest]"}}]},"status":400} (Searchkick::InvalidQueryError)
